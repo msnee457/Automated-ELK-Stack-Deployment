@@ -2,7 +2,7 @@
 The purpose of this project is to configure the deployment of an ELK stack server.
 ## Automated ELK Stack Deployment
 The files in this repository were used to configure the network depicted below.
-Project 1 Network Diagram ELK Stack Deployment.png
+(Diagrams/Project 1 Network Diagram ELK Stack Deployment.png)
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the yml file may be used to install only certain pieces of it, such as Filebeat.
   - _TODO: Enter the playbook file._
 This document contains the following details:
