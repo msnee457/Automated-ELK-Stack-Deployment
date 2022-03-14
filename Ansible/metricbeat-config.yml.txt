@@ -1,0 +1,8 @@
+setup.kibana:
+  host: "10.1.0.6:5601"
+
+output.elasticsearch:
+  # Array of hosts to connect to.
+  hosts: ["10.1.0.6:9200"]
+  username: "elastic"
+  password: "changeme"
