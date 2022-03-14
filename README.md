@@ -3,7 +3,7 @@ The purpose of this project is to configure the deployment of an ELK stack serve
 ## Automated ELK Stack Deployment
 The files in this repository were used to configure the network depicted below.
 
-
+Project_1_Network_Diagram_ELK_Stack_Deployment.png
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the yml file may be used to install only certain pieces of it, such as Filebeat.
 
@@ -118,7 +118,7 @@ The playbook implements the following tasks:
           
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+ELK_Docker_ps.png
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
