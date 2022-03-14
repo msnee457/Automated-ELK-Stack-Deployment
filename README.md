@@ -24,21 +24,21 @@ Load balancing ensures that the application will be highly functional, in additi
 
 What aspect of security do load balancers protect? 
 
-•	Load balancers protect the network from experiencing downtime due to heavy network traffic and potential Denial of Service attacks. Additionally, load balancers distribute traffic more evenly across network servers. 
+- Load balancers protect the network from experiencing downtime due to heavy network traffic and potential Denial of Service attacks. Additionally, load balancers distribute traffic more evenly across network servers. 
 
 What is the advantage of a jump box?
 
-•	The advantage of a jump box is that it is the only machine on the network exposed to the public internet, making it a gateway for the network. All other machines and servers are not exposed and therefore, less vulnerable to attack. 
+- The advantage of a jump box is that it is the only machine on the network exposed to the public internet, making it a gateway for the network. All other machines and servers are not exposed and therefore, less vulnerable to attack. 
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the data and system logs.
 
 What does Filebeat watch for?
 
-•	Filebeat watches for changes in logfiles on the system. 
+- Filebeat watches for changes in logfiles on the system. 
 
 What does Metricbeat record?
 
-•	Metricbeat records statistics and metric data on the system. 
+- Metricbeat records statistics and metric data on the system. 
 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
@@ -53,13 +53,13 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 The machines on the internal network are not exposed to the public Internet. 
 Only the Jump Box Provisioner machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
 
-•	47.152.190.52 (Workstation IP Address)
+- 47.152.190.52 (Workstation IP Address)
 
 Machines within the network can only be accessed by the Jump Box Provisioner VM.
 
 Which machine did you allow to access your ELK VM? What was its IP address?
 
-•	The Jump Box Provisioner is allowed to access the ELK Server VM using the IP address 10.0.0.4. The workstation computer is also allowed access to the ELK Server VM through TCP Port 5601. 
+- The Jump Box Provisioner is allowed to access the ELK Server VM using the IP address 10.0.0.4. The workstation computer is also allowed access to the ELK Server VM through TCP Port 5601. 
 
 A summary of the access policies in place can be found in the table below.
 | Name          | Publicly Accessible | Allowed IP Addresses                            |
@@ -125,26 +125,32 @@ The following screenshot displays the result of running `docker ps` after succes
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
 
-•	Web-1: 10.0.0.5
+- Web-1: 10.0.0.5
 
-•	Web-2: 10.0.0.6
+- Web-2: 10.0.0.6
 
 We have installed the following Beats on these machines:
 
-•	We have successfully installed Filebeat.
+- Filebeat and Metricbeat have been installed. 
 
-•	We have successfully installed Metricbeat.
+- These Beats were installed on the ELK Server VM, Web-1 and Web-2.
 
 These Beats allow us to collect the following information from each machine:
 
-Filebeat collects data from log files that it generates and organizes in the system. Changes that have occurred in these files are logged and sent to Logstash and Elasticsearch. 
+- Filebeat collects data from log files that it generates and organizes in the system. Changes that have occurred in these files are logged and sent to Logstash and Elasticsearch. 
 
-Metricbeat collects metrics and statistics from the system and various services that run on the system and sends them to Logstash and Elasticsearch.
+- Metricbeat collects metrics and statistics from the system and various services that run on the system and sends them to Logstash and Elasticsearch.
 
 ### Using the Playbook
 
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 SSH into the control node and follow the steps below:
+
+For ELK:
+
+Configure the [Elk Configuration File](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/install-elk.yml.txt).
+
+Run `ansible-playbook install-elk.yml` to deploy the playbook.
 
 For Filebeat:
 
