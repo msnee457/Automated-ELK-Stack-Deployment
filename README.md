@@ -205,9 +205,15 @@ In Kibana:
 
 - Scroll to **Module Status** and click **Check Data**
 
+  - There should be a message verifying that data is being sent to the ELK Server
+
+  ![Filebeat Data Verification](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/filebeat_data_verification.png)
+
 - Click **System logs dashboard**
 
 If the playbook was successfully deployed, there should be an interface with log data showing:
+
+![Filebeat System Logs](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/filebeat_system_logs.png)
 
 
 - Copy the _____ file to _____.
