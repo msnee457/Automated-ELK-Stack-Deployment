@@ -167,7 +167,7 @@ output.elasticsearch
   password: "changeme" 
   ```
 
-Use `Ctrl + w` to searc for `setup.kibana` input ELK Server private IP address
+Use `Ctrl + w` to search for `setup.kibana` and input ELK Server private IP address
 
 ``` 
 setup.kibana:
@@ -187,7 +187,7 @@ Configure the file to run the installation playbook
   - name: install filebeat deb
     command: dpkg -i filebeat-7.4.0-amd64.deb
 ```
-See Completed [Filebeat Playbook Configuration](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/filebeat-playbook.yml.txt)
+See [Completed Filebeat Playbook Configuration](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/filebeat-playbook.yml.txt)
 
 Run playbook using `ansible-playbook filebeat-playbook.yml`
 
@@ -215,7 +215,72 @@ If the playbook was successfully deployed, there should be an interface with log
 
 ![Filebeat System Logs](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/filebeat_system_logs.png)
 
+For Metricbeat:
 
+Run `curl -L -O https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/metricbeat-config.yml`
+
+Edit the "metricbeat-config.yml" file by using `Ctrl + w` to search for `setup.kibana`
+
+Input private IP address of ELK server VM
+
+```
+setup.kibana:
+  host: "10.1.0.6:5601"
+  ```
+  
+Use `Ctrl + w` to search for `output.elasticsearch` and input ELK Server private IP address
+
+```
+output.elasticsearch:
+  # Array of hosts to connect to.
+  hosts: ["10.1.0.6:9200"]
+  username: "elastic"
+  password: "changeme"
+  ```
+  
+Copy /etc/ansible/metricbeat-config.yml to /etc/ansible/files/metricbeat-config.yml
+  
+Navigate to the /etc/ansible/roles directory and create the `metricbeat-playbook.yml`
+
+Configure the fil to run the installation playbook
+
+```
+   # Download metricbeat
+  - name: Download metricbeat
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.4.0-amd64.deb
+
+    # Install metricbeat
+  - name: install metricbeat
+    command: dpkg -i metricbeat-7.4.0-amd64.deb
+```
+See [Completed Metricbeat Playbook Configuration](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/metricbeat-playbook.yml.txt)
+
+Run playbook using `ansible-playbook metricbeat-playbook.yml`
+
+To verify that the playbook was deployed correctly, navigate to the ELK Server GUI using public IP address of ELK Server VM
+
+`http://[your.VM.IP]:5601/app/kibana`
+
+In Kibana:
+
+- Navigate to **Add Metric Data**
+
+- Choose **Docker Metrics**
+
+- Under **Get Started** click **GEB**
+
+- Scroll to **Module Status** and click **Check Data**
+
+  - There should be a message verifying that data is being sent to the ELK Server
+
+  ![Metricbeat Data Verification](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/metricbeat_data_verification.png)
+
+- Click **Docker metrics dashboard**
+
+If the playbook was successfully deployed, there should be an interface with log data showing:
+
+![Metricbeat System Logs](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/metricbeat_system_logs.png)
+ 
 - Copy the _____ file to _____.
 - Update the _____ file to include...
 - Run the playbook, and navigate to ____ to check that the installation worked as expected.
