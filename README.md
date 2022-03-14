@@ -156,11 +156,23 @@ For Filebeat:
 
 Run `curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/filebeat-config.yml`
 
-Edit “filebeat-config.yml”
+Edit the "filebeat-config.yml" file by using `Ctrl + w` to search for `output.elasticsearch`
 
-Scroll to “output.elasticsearch” and replace the IP address with the private IP of ELK Server VM
+Input private IP address of ELK server VM into the file 
 
-Scroll to “setup.kibana” and replace IP address with the private IP of ELK Server VM
+```
+output.elasticsearch
+  hosts: ["10.1.0.6:9200"]
+  username: "elastic"
+  password: "changeme" 
+  ```
+
+Use `Ctrl + w` to searc for `setup.kibana` input ELK Server private IP address
+
+``` 
+setup.kibana:
+  host: "10.1.0.6:5601"
+  ```
 
 Copy /etc/ansible/filbeat-config.yml to /etc/ansible/files/filebeat-config.yml
 
