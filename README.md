@@ -156,7 +156,7 @@ For Filebeat:
 
 Run `curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/filebeat-config.yml`
 
-Edit the "filebeat-config.yml" file by using `Ctrl + w` to search for `output.elasticsearch`
+Edit the `filebeat-config.yml` file by using `Ctrl + w` to search for `output.elasticsearch`
 
 Input private IP address of ELK server VM into the file 
 
@@ -174,9 +174,9 @@ setup.kibana:
   host: "10.1.0.6:5601"
   ```
 
-Copy /etc/ansible/filebeat-config.yml to /etc/ansible/files/filebeat-config.yml
+Copy `/etc/ansible/filebeat-config.yml` to `/etc/ansible/files/filebeat-config.yml`
 
-Navigate to the /etc/ansible/roles directory and create the `filebeat-playbook.yml`
+Navigate to the `/etc/ansible/roles` directory and create the `filebeat-playbook.yml`
 
 Configure the file to run the installation playbook 
 
@@ -219,7 +219,7 @@ For Metricbeat:
 
 Run `curl -L -O https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/metricbeat-config.yml`
 
-Edit the "metricbeat-config.yml" file by using `Ctrl + w` to search for `setup.kibana`
+Edit the `metricbeat-config.yml` file by using `Ctrl + w` to search for `setup.kibana`
 
 Input private IP address of ELK server VM
 
@@ -238,9 +238,9 @@ output.elasticsearch:
   password: "changeme"
   ```
   
-Copy /etc/ansible/metricbeat-config.yml to /etc/ansible/files/metricbeat-config.yml
+Copy `/etc/ansible/metricbeat-config.yml` to `/etc/ansible/files/metricbeat-config.yml`
   
-Navigate to the /etc/ansible/roles directory and create the `metricbeat-playbook.yml`
+Navigate to the `/etc/ansible/roles` directory and create the `metricbeat-playbook.yml`
 
 Configure the fil to run the installation playbook
 
@@ -303,7 +303,9 @@ SSH into Jump Box VM
 
 - Run `sudo docker container list -a`
 
-  - The result should be the Ansible container that has been created
+  - The result should be the Ansible container that has been created:
+
+  ![Ansible Container Creation](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/ansible_container_creation.png)
 
 ### Configure the /etc/ansible/ansible.cfg
 
@@ -313,7 +315,7 @@ Use `Ctrl + w` to search for `remote_user`
 
 Change the `remote_user` to `azureuser`
 
-  - ![Ansible Configuration](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/ansible.cfg.txt)
+  See [Completed Ansible Configuration File](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/ansible.cfg.txt)
 
 ### Configure the /etc/ansible/hosts file
 
@@ -321,7 +323,7 @@ To configure this file, run the command `nano /etc/ansible/hosts' on the ansible
 
 Use `Ctrl + w` to search for `webservers`
 
-Uncomment the webservers section and add the following:
+Uncomment the `webservers` section and add the following:
 
 ```
 10.0.0.5 ansible_python_intercepter=/usr/bin/python3
@@ -330,7 +332,7 @@ Uncomment the webservers section and add the following:
 
 Use `Ctrl + w` to search for `elk`
 
-Uncomment the elk section and add the following:
+Uncomment the `elk` section and add the following:
 
 ```
 10.1.0.6 ansible_python_intercepter=/usr/bin/python3
