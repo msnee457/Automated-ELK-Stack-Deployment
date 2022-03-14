@@ -3,11 +3,13 @@ The purpose of this project is to configure the deployment of an ELK stack serve
 ## Automated ELK Stack Deployment
 The files in this repository were used to configure the network depicted below.
 
-https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Diagrams/Project_1_Network_Diagram_ELK_Stack_Deployment.png
+![Network Diagram](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Diagrams/Project_1_Network_Diagram_ELK_Stack_Deployment.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the yml file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the *yml* file may be used to install only certain pieces of it, such as Filebeat.
 
-  - _TODO: Enter the playbook file._
+ [filebeat-playbook.yml](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/filebeat-playbook.yml.txt)
+ 
+ [metricbeat-playbook.yml](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/metricbeat-playbook.yml.txt)
 
 This document contains the following details:
 - Description of the Topology
@@ -118,7 +120,7 @@ The playbook implements the following tasks:
           
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/ELK_Docker_ps.png
+![Docker PS](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/ELK_Docker_ps.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -146,7 +148,7 @@ SSH into the control node and follow the steps below:
 
 For Filebeat:
 
-Run curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/filebeat-config.yml
+Run `curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/filebeat-config.yml`
 
 Edit “filebeat-config.yml”
 
