@@ -285,6 +285,26 @@ If the playbook was successfully deployed, there should be an interface with log
 
 ## Additional Notes and Configurations
 
+### Install Docker on Jump Box
+
+SSH into Jump Box VM
+
+  - `ssh azureuser@52.150.22.109`
+
+- Run `sudo apt-get update`
+
+- Run `sudo apt install docker.io`
+
+- Run `sudo systemctl start docker`
+
+- Run `sudo docker pull cyberxsecurity/ansible`
+
+- Run `sudo docker -ti cyberxsecurity/ansible bash`
+
+- Run `sudo docker container list -a`
+
+  - The result should be the Ansible container that has been created
+
 ### Configure the /etc/ansible/ansible.cfg
 
 To configure this file, run the command 'nano /etc/ansible/ansible.cfg' on the ansible container
@@ -295,16 +315,24 @@ Change the `remote_user` to `azureuser`
 
   - ![Ansible Configuration](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/ansible.cfg.txt)
 
+### Configure the /etc/ansible/hosts file
+
+To configure this file, run the command `nano /etc/ansible/hosts' on the ansible container
+
+Use `Ctrl + w` to search for `webservers`
+
 Uncomment the webservers section and add the following:
 
 ```
 10.0.0.5 ansible_python_intercepter=/usr/bin/python3
- 
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+10.0.0.6 ansible_python_intercepter=/usr/bin/python3
+```
+
+Use `Ctrl + w` to search for `elk`
+
+Uncomment the elk section and add the following:
+
+```
+10.1.0.6 ansible_python_intercepter=/usr/bin/python3
+```
+
