@@ -174,9 +174,24 @@ setup.kibana:
   host: "10.1.0.6:5601"
   ```
 
-Copy /etc/ansible/filbeat-config.yml to /etc/ansible/files/filebeat-config.yml
+Copy /etc/ansible/filebeat-config.yml to /etc/ansible/files/filebeat-config.yml
 
+Navigate to the /etc/ansible/roles directory and create the `filebeat-playbook.yml`
 
+Configure the file to run the installation playbook 
+
+```
+ - name: download filebeat deb
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-amd64.deb
+
+  - name: install filebeat deb
+    command: dpkg -i filebeat-7.4.0-amd64.deb
+```
+See Completed [Filebeat Playbook Configuration](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/filebeat-playbook.yml.txt)
+
+Run playbook using `ansible-playbook filebeat-playbook.yml`
+
+To verify that the playbook was deployed correctly, 
 - Copy the _____ file to _____.
 - Update the _____ file to include...
 - Run the playbook, and navigate to ____ to check that the installation worked as expected.
