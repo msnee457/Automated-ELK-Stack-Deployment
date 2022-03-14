@@ -191,7 +191,25 @@ See Completed [Filebeat Playbook Configuration](https://github.com/msnee457/Auto
 
 Run playbook using `ansible-playbook filebeat-playbook.yml`
 
-To verify that the playbook was deployed correctly, 
+To verify that the playbook was deployed correctly, navigate to the ELK Server GUI using public IP address of ELK Server VM
+
+`http://[your.VM.IP]:5601/app/kibana`
+
+In Kibana:
+
+- Navigate to **Add Log Data**
+
+- Choose **System Logs**
+
+- Under **Get Started** click **GEB**
+
+- Scroll to **Module Status** and click **Check Data**
+
+- Click **System logs dashboard**
+
+If the playbook was successfully deployed, there should be an interface with log data showing:
+
+
 - Copy the _____ file to _____.
 - Update the _____ file to include...
 - Run the playbook, and navigate to ____ to check that the installation worked as expected.
