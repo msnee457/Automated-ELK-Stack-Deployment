@@ -1,0 +1,35 @@
+#!/bin/bash
+
+states=('California' 'New York' 'Hawaii' 'Florida' 'Nevada')
+nums=$(echo {0..9})
+ls_out=$(ls)
+execs=$(sudo find /home -type f -perm 777) 
+
+for state in ${states[@]};
+do
+        if [ $state == 'Hawaii' ]
+        then
+                echo "Hawaii is the best!"
+        else
+                echo "I'm not fond of Hawaii."
+        fi
+
+done
+
+for num in ${nums[@]};
+do
+        if [ $num = 3 ] || [ $num = 5 ] || [ $num = 7 ]
+        then
+                echo $num
+        fi
+done
+
+for x in ${ls_out[@]};
+do
+        echo $x
+done
+
+for exc in ${execs[@]};
+do
+        echo $exc
+done

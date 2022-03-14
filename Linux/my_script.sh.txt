@@ -1,0 +1,54 @@
+#!/bin/bash
+
+name='Michelle'
+my_list=(a b c d e)
+months=(
+        'january'
+        'february'
+        'march'
+        'april'
+        'may'
+        'june'
+        'july'
+        'august'
+        'september'
+        'october'
+        'november'
+        'december'
+)
+days=('mon' 'tue' 'wed' 'thur' 'fri' 'sat' 'sun')
+
+echo "Hello $name."
+echo -e "\nThis is my script.\n"
+echo -e "The files in $PWD are: \n $(ls)\n"
+echo -e "The letter A is:\n"
+echo ${my_list[0]}
+echo -e "\nThe letter D is:\n"
+echo ${my_list[3]}
+echo -e "\n"
+
+for month in ${months[@]};
+do
+        echo $month
+done
+
+echo -e "\n"
+
+for day in ${days[@]};
+do
+        if [ $day = 'sat' ] || [ $day = 'sun' ]
+        then
+                echo "It is $day. Take it easy."
+        else
+                echo "It is $day. Get to work!"
+        fi
+done
+
+echo -e "\n"
+for num in {0..11};
+do
+        if [ $num = 1 ] || [ $num = 4 ]
+        then
+                echo ${months[$num]}
+        fi
+done
