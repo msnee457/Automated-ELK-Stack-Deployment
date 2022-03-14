@@ -280,6 +280,25 @@ In Kibana:
 If the playbook was successfully deployed, there should be an interface with log data showing:
 
 ![Metricbeat System Logs](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/metricbeat_system_logs.png)
+
+---
+
+## Additional Notes and Configurations
+
+### Configure the /etc/ansible/ansible.cfg
+
+To configure this file, run the command 'nano /etc/ansible/ansible.cfg' on the ansible container
+
+Use `Ctrl + w` to search for `remote_user`
+
+Change the `remote_user` to `azureuser`
+
+  - ![Ansible Configuration](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/ansible.cfg.txt)
+
+Uncomment the webservers section and add the following:
+
+```
+10.0.0.5 ansible_python_intercepter=/usr/bin/python3
  
 - Copy the _____ file to _____.
 - Update the _____ file to include...
