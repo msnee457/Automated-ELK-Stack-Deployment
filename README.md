@@ -167,7 +167,7 @@ output.elasticsearch
   password: "changeme" 
   ```
 
-Use `Ctrl + w` to searc for `setup.kibana` input ELK Server private IP address
+Use `Ctrl + w` to search for `setup.kibana` and input ELK Server private IP address
 
 ``` 
 setup.kibana:
@@ -187,13 +187,13 @@ Configure the file to run the installation playbook
   - name: install filebeat deb
     command: dpkg -i filebeat-7.4.0-amd64.deb
 ```
-See Completed [Filebeat Playbook Configuration](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/filebeat-playbook.yml.txt)
+See [Completed Filebeat Playbook Configuration](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/filebeat-playbook.yml.txt)
 
 Run playbook using `ansible-playbook filebeat-playbook.yml`
 
 To verify that the playbook was deployed correctly, navigate to the ELK Server GUI using public IP address of ELK Server VM
 
-`http://[your.VM.IP]:5601/app/kibana`
+  - `http://[your.VM.IP]:5601/app/kibana`
 
 In Kibana:
 
@@ -205,16 +205,134 @@ In Kibana:
 
 - Scroll to **Module Status** and click **Check Data**
 
+  - There should be a message verifying that data is being sent to the ELK Server
+
+  ![Filebeat Data Verification](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/filebeat_data_verification.png)
+
 - Click **System logs dashboard**
 
 If the playbook was successfully deployed, there should be an interface with log data showing:
 
+![Filebeat System Logs](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/filebeat_system_logs.png)
 
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+For Metricbeat:
+
+Run `curl -L -O https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat > /etc/ansible/metricbeat-config.yml`
+
+Edit the "metricbeat-config.yml" file by using `Ctrl + w` to search for `setup.kibana`
+
+Input private IP address of ELK server VM
+
+```
+setup.kibana:
+  host: "10.1.0.6:5601"
+  ```
+  
+Use `Ctrl + w` to search for `output.elasticsearch` and input ELK Server private IP address
+
+```
+output.elasticsearch:
+  # Array of hosts to connect to.
+  hosts: ["10.1.0.6:9200"]
+  username: "elastic"
+  password: "changeme"
+  ```
+  
+Copy /etc/ansible/metricbeat-config.yml to /etc/ansible/files/metricbeat-config.yml
+  
+Navigate to the /etc/ansible/roles directory and create the `metricbeat-playbook.yml`
+
+Configure the fil to run the installation playbook
+
+```
+   # Download metricbeat
+  - name: Download metricbeat
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.4.0-amd64.deb
+
+    # Install metricbeat
+  - name: install metricbeat
+    command: dpkg -i metricbeat-7.4.0-amd64.deb
+```
+See [Completed Metricbeat Playbook Configuration](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/metricbeat-playbook.yml.txt)
+
+Run playbook using `ansible-playbook metricbeat-playbook.yml`
+
+To verify that the playbook was deployed correctly, navigate to the ELK Server GUI using public IP address of ELK Server VM
+
+  - `http://[your.VM.IP]:5601/app/kibana`
+
+In Kibana:
+
+- Navigate to **Add Metric Data**
+
+- Choose **Docker Metrics**
+
+- Under **Get Started** click **GEB**
+
+- Scroll to **Module Status** and click **Check Data**
+
+  - There should be a message verifying that data is being sent to the ELK Server
+
+  ![Metricbeat Data Verification](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/metricbeat_data_verification.png)
+
+- Click **Docker metrics dashboard**
+
+If the playbook was successfully deployed, there should be an interface with log data showing:
+
+![Metricbeat System Logs](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Images/metricbeat_system_logs.png)
+
+---
+
+## Additional Notes and Configurations
+
+### Install Docker on Jump Box
+
+SSH into Jump Box VM
+
+  - `ssh azureuser@52.150.22.109`
+
+- Run `sudo apt-get update`
+
+- Run `sudo apt install docker.io`
+
+- Run `sudo systemctl start docker`
+
+- Run `sudo docker pull cyberxsecurity/ansible`
+
+- Run `sudo docker -ti cyberxsecurity/ansible bash`
+
+- Run `sudo docker container list -a`
+
+  - The result should be the Ansible container that has been created
+
+### Configure the /etc/ansible/ansible.cfg
+
+To configure this file, run the command 'nano /etc/ansible/ansible.cfg' on the ansible container
+
+Use `Ctrl + w` to search for `remote_user`
+
+Change the `remote_user` to `azureuser`
+
+  - ![Ansible Configuration](https://github.com/msnee457/Automated-ELK-Stack-Deployment/blob/main/Ansible/ansible.cfg.txt)
+
+### Configure the /etc/ansible/hosts file
+
+To configure this file, run the command `nano /etc/ansible/hosts' on the ansible container
+
+Use `Ctrl + w` to search for `webservers`
+
+Uncomment the webservers section and add the following:
+
+```
+10.0.0.5 ansible_python_intercepter=/usr/bin/python3
+10.0.0.6 ansible_python_intercepter=/usr/bin/python3
+```
+
+Use `Ctrl + w` to search for `elk`
+
+Uncomment the elk section and add the following:
+
+```
+10.1.0.6 ansible_python_intercepter=/usr/bin/python3
+```
+
