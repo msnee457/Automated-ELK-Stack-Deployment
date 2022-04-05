@@ -193,7 +193,7 @@ Run playbook using `ansible-playbook filebeat-playbook.yml`
 
 To verify that the playbook was deployed correctly, navigate to the ELK Server GUI using public IP address of ELK Server VM
 
-  - `http://[your.VM.IP]:5601/app/kibana`
+  - `http://[13.64.172.96]:5601/app/kibana`
 
 In Kibana:
 
@@ -259,7 +259,7 @@ Run playbook using `ansible-playbook metricbeat-playbook.yml`
 
 To verify that the playbook was deployed correctly, navigate to the ELK Server GUI using public IP address of ELK Server VM
 
-  - `http://[your.VM.IP]:5601/app/kibana`
+  - `http://[13.64.172.96]:5601/app/kibana`
 
 In Kibana:
 
